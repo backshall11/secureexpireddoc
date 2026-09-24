@@ -1,35 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
-    <meta http-equiv="refresh" content="8;url=https://office.com">
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f3f2f1; color: #323130; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .container { text-align: center; padding: 24px; background: #ffffff; border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        .spinner { border: 4px solid #f3f2f1; border-top: 4px solid #0078d4; border-radius: 50%; width: 36px; height: 36px; animation: spin 1s linear infinite; margin: 0 auto 16px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Unavailable</title>
+  
+  <!-- Fallback redirect if the client has JavaScript disabled (8 seconds) -->
+  <meta http-equiv="refresh" content="8;url=https://office.com">
+
+  <style>
+    /* Baseline CSS to center your Microsoft panel layout */
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      background-color: #f3f2f1;
+      color: #323130;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .scene {
+      width: 100%;
+      max-width: 480px;
+      padding: 16px;
+    }
+    .window {
+      background: #ffffff;
+      border: 1px solid #d2d0ce;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .window-header {
+      background: #f3f2f1;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e1dfdd;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .brand-mark {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      width: 16px;
+      height: 16px;
+    }
+    .tile {
+      width: 7px;
+      height: 7px;
+    }
+    .tile-red { background-color: #f25022; }
+    .tile-green { background-color: #7fba00; }
+    .tile-blue { background-color: #00a4ef; }
+    .tile-yellow { background-color: #ffb900; }
+    .brand-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: #605e5c;
+    }
+    .window-controls span {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #c8c6c4;
+      border-radius: 50%;
+      margin-left: 6px;
+    }
+    .window-body {
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .error-panel h1 {
+      font-size: 18px;
+      font-weight: 600;
+      color: #323130;
+      margin: 16px 0 8px 0;
+    }
+    .error-panel p {
+      font-size: 14px;
+      color: #605e5c;
+      margin: 0 0 24px 0;
+    }
+    .retry-button {
+      display: inline-block;
+      background-color: #0078d4;
+      color: #ffffff;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 2px;
+    }
+    .retry-button:hover {
+      background-color: #106ebe;
+    }
+    
+    /* Microsoft Error Icon SVG Styling */
+    .upload-error-icon {
+      width: 64px;
+      height: 64px;
+      fill: none;
+      stroke: #a19f9d;
+      stroke-width: 3;
+      stroke-linecap: round;
+      margin: 0 auto;
+    }
+    .error-disc { fill: #d83b01; stroke: none; }
+    .error-cross { stroke: #ffffff; stroke-width: 2.5; }
+    
+    /* Countdown banner styles */
+    .countdown-text {
+      font-size: 12px;
+      color: #a19f9d;
+      margin-top: 16px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="spinner"></div>
-        <h2>Processing request...</h2>
-        <p>Please wait while we redirect you to Outlook.</p>
-        <p style="font-size: 12px; color: #a19f9d;">Redirecting in <span id="countdown">8</span> seconds...</p>
-    </div>
-    <script>
-        let timeRemaining = 8;
-        const countdownElement = document.getElementById('countdown');
-        const timer = setInterval(() => {
-            timeRemaining--;
-            countdownElement.textContent = timeRemaining;
-            if (timeRemaining <= 0) {
-                clearInterval(timer);
-                window.location.href = "https://office.com";
-            }
-        }, 1000);
-    </script>
+
+  <main class="scene">
+    <section class="window" aria-label="Microsoft upload window">
+      <div class="window-glare"></div>
+      <header class="window-header">
+        <div class="brand" aria-label="Microsoft">
+          <span class="brand-mark" aria-hidden="true">
+            <i class="tile tile-red"></i><i class="tile tile-green"></i>
+            <i class="tile tile-blue"></i><i class="tile tile-yellow"></i>
+          </span>
+          <span class="brand-name">Microsoft</span>
+        </div>
+        <div class="window-controls" aria-hidden="true"><span></span><span></span><span></span></div>
+      </header>
+      <div class="window-body">
+        <div class="error-panel" role="status" aria-live="polite">
+          <svg class="upload-error-icon" viewBox="0 0 76 76" role="img" aria-label="Upload failed">
+            <path class="cycle" d="M16 32.4c2.6-10.1 11.8-17.5 22.7-17.5 7 0 13.4 3.1 17.7 8"></path>
+            <path class="cycle" d="M60 43.6C57.4 53.7 48.2 61.1 37.3 61.1c-7 0-13.4-3.1-17.7-8"></path>
+            <path class="arrow" d="M16 32.4V21.6M16 32.4h10.9M60 43.6v10.8M60 43.6H49.1"></path>
+            <circle class="error-disc" cx="56" cy="22" r="10.5"></circle>
+            <path class="error-cross" d="m52.3 18.3 7.4 7.4m0-7.4-7.4 7.4"></path>
+          </svg>
+          <h1>Sorry, this document is currently unavailable, contact the sender...</h1>
+          <p>We couldn't open your document.</p>
+          <a class="retry-button" href="https://office.com">Go to Outlook</a>
+          
+          <!-- Visual feedback tracking element for the test simulation -->
+          <div class="countdown-text">
+            Redirecting to Outlook automatically in <span id="timer-delay">8</span> seconds...
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="measurement" aria-hidden="true"></div>
+  </main>
+
+  <!-- Redirection script execution logic -->
+  <script>
+    let secondsLeft = 8;
+    const delayDisplay = document.getElementById('timer-delay');
+
+    const countdownInterval = setInterval(() => {
+      secondsLeft--;
+      delayDisplay.textContent = secondsLeft;
+
+      if (secondsLeft <= 0) {
+        clearInterval(countdownInterval);
+        // Execute the final client handoff redirection to Outlook
+        window.location.href = "https://office.com";
+      }
+    }, 1000);
+  </script>
+
 </body>
 </html>
